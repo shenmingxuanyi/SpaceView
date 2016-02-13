@@ -1,0 +1,325 @@
+﻿
+
+
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>熊猫金融</title>
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="./js/plugs/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="./js/plugs/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+<!-- animate -->
+<link rel="stylesheet" href="./css/animate/3.5.0/animate.min.css">
+<!-- font-awesome -->
+<link rel="stylesheet" href="./css/font-awesome/4.5.0/css/font-awesome.min.css">
+<!-- default style -->
+<link rel="stylesheet" href="./css/style.css">
+
+<!-- jQuery -->
+<script type="text/javascript" src="./js/jquery/2.1.1/jquery-2.1.1.js"></script>
+
+<!-- bootstrap -->
+<script type="text/javascript" src="./js/plugs/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<style type="text/css">
+
+body{
+	background-image: url("./image/finance/bg.jpg");
+	background-repeat:no-repeat;
+	background-attachment:fixed;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+}
+#ANDROID_APP canvas, #IOS_APP canvas, #ANDROID_APP table, #IOS_APP table
+	{
+	border: 1px dashed #fff;
+	padding: 5px;
+	width: 100%;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+ .card {
+     overflow: hidden;
+     margin: 20px 10px;
+     border-radius: 2px;
+     background-color: #fff;
+ }
+
+ .card {
+     padding-top: 10px;
+     padding-bottom: 10px;
+     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+ }
+
+.card .header,.card .body{
+	margin: 5px 0;
+}
+
+.bg-img-cd-a {
+    background-image: url("./image/finance/bg/cd-a.png");
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+
+}
+
+.bg-img-cd-b {
+    background-image: url("./image/finance/bg/cd-b.png");
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+}
+
+.bg-img-cd-c {
+    background-image: url("./image/finance/bg/cd-c.png");
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+}
+
+.card .header .title-left{
+
+	display:inline-block;
+	padding: 0 10px;
+
+	overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    -webkit-box-shadow: 0 5px 5px -5px #333;
+    -moz-box-shadow: 0 5px 5px -5px #333;
+    box-shadow: 0 5px 5px -5px #333;
+
+    -webkit-transform: skewX(-15deg);
+    -moz-transform: skewX(-15deg);
+    -ms-transform: skewX(-15deg);
+    -o-transform: skewX(-15deg);
+    transform: skewX(-15deg);
+
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 3px;
+    border-radius: 4px;
+    
+    background-color: #ef473a;
+    
+    color:#fff;
+    font-weight: bold;
+    font-size:14px;
+    line-height: 20px;
+    
+}
+
+.card .header .title-right{
+	display:inline-block;
+
+	background-color: rgba(200, 200, 200, .2);
+
+    -webkit-box-shadow: -4px 0 5px -3px rgba(0, 0, 0, .3);
+    -moz-box-shadow: -4px 0 5px -3px rgba(0, 0, 0, .3);
+    box-shadow: -4px 0 5px -3px rgba(0, 0, 0, .3);
+
+    padding: 2px 15px;
+    
+    position: absolute;
+    right: 0px;
+    max-width: 60vw;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+</style>
+</head>
+
+
+<script type="text/javascript">
+function is_weixin(){ 
+    var ua = navigator.userAgent.toLowerCase(); 
+    if(ua.match(/MicroMessenger/i)=="micromessenger") { 
+        return true; 
+     } else { 
+        return false; 
+    } 
+}
+</script>
+<body>
+
+	<header id="header" style="visibility: hidden;">
+		<div class="container-fluid" style="position: relative;z-index:2;">
+			<div class="row"
+				style="color: #fff; background-color: #ef473a; padding-top: 20px;">
+				<div class="col-xs-6">
+					<div id="ANDROID_APP" style="width: 100%"></div>
+				</div>
+				<div class="col-xs-6">
+					<div id="IOS_APP" style="width: 100%"></div>
+				</div>
+				<div class="col-xs-6 text-center" style="font-weight: bold;">
+					<i class="fa fa-android"></i>Android</div>
+				<div class="col-xs-6 text-center" style="font-weight: bold;">
+					<i class="fa fa-apple"></i>IOS</div>
+
+				<div class=col-xs-12>
+					<div class="row" style="margin-top: 5px; margin-bottom: 5px;">
+						<div class="col-xs-3" style="height:10px;border-top: 1px solid #fff;-webkit-border-radius: 50%/50%;-moz-border-radius: 50%/50%;border-radius: 50%/50%;"></div>
+						<div class="col-xs-3" style="height:10px;border-bottom: 1px solid #fff;-webkit-border-radius: 50%/50%;-moz-border-radius: 50%/50%;border-radius: 50%/50%;"></div>
+						<div class="col-xs-3" style="height:10px;border-top: 1px solid #fff;-webkit-border-radius: 50%/50%;-moz-border-radius: 50%/50%;border-radius: 50%/50%;"></div>
+						<div class="col-xs-3" style="height:10px;border-bottom: 1px solid #fff;-webkit-border-radius: 50%/50%;-moz-border-radius: 50%/50%;border-radius: 50%/50%;"></div>
+					</div>
+				</div>
+				<div class="col-xs-12 text-center">中天智慧科技有限公司 ZSmarter
+					LTD.&copy;2016.</div>
+			</div>
+		</div>
+		<div  style="background-color: #ef473a;height: 100px;width:100%; position: relative;top:-50px;-webkit-border-radius: 50%/50%;-moz-border-radius: 50%/50%;border-radius: 50%/50%;">
+			<div id="appName" align="center" style="padding-top:50px;">
+				<span style="font-size: 30px;color:#fff;">熊猫金融</span>
+			</div>
+		</div>
+	</header>
+	
+	<article id="product" style="margin-top:-30px;">
+		<div class="text-center" style="font-size:150px;color:#f7a427;"><i class="fa fa-stop-circle fa-spin"></i></div>
+	</article>
+</body>
+<script type="text/javascript" src="./js/plugs/jquery-qrcode/1.0.1/qrcode.js"></script>
+<script type="text/javascript" src="./js/plugs/jquery-qrcode/1.0.1/jquery.qrcode.js"></script>
+<script id="productTemplate" type="text/htmlTemplate">
+	<section class="card bg-img-cd-b" onclick="viewProduct('{{productCode}}');">
+			<div class="row">
+
+				<div class="col-xs-12 header">
+					<div class="row">
+						<div class="col-xs-6">
+							<span style="margin-left:10px;" class="title-left">{{productName}}</span>
+						</div>
+						<div class="col-xs-6 text-right">
+							<span style="margin-right:10px;" class="title-right">{{providerName}}</span>
+						</div>
+					</div>
+				</div>
+						
+				<div class="col-xs-12 line-bottom line-stable"></div>
+				
+				<div class="col-xs-12 body">
+					<div class="row">
+						<div class="col-xs-4">
+							<div class="row">
+								<div class="col-xs-12 text-center">
+									<span style="font-size: 28px;color:#ef473a">{{sevenDayYields}}</span>
+									<span style="font-size: 22px;color:#ef473a">%</span>
+								</div>
+								<div class="col-xs-12 text-center" style="font-size: 10px;">七日年化收益率</div>
+							</div>
+						</div>
+						<div class="col-xs-8">
+							<div class="row">
+								<div class="col-xs-12 text-center">
+									<span style="font-size: 28px;color:#ef473a">{{millionYields}}</span>
+									<span style="font-size: 22px;color:#ef473a">元</span>
+									<span style="font-size: 12px;color:#444">日万分收益</span>
+								</div>
+								<div class="col-xs-12 line-bottom line-stable"></div>
+								<div class="col-xs-6 text-center">
+                                    <span style="font-size: 12px;color:#444">灵活存取</span>
+								</div>
+								<div class="col-xs-6 text-center">
+                                    <span style="font-size: 12px;color:#444">给您更多选择</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</section>
+</script>
+<script>
+	(function() {
+	
+		$.ajax({
+			url : "./json/shareProductList.json",
+			type : "post",
+			data : {
+				productCode : "",
+				cellPhone : ""
+			},
+			dataType : "json",
+			success : function(result) {
+				
+				$("#header").addClass("animated bounceInDown").css("visibility","visible").one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+					$("#appName").addClass("animated flipInX infinite").css({'-webkit-animation-duration':'2s','animation-duration':'2s'});
+				});
+				
+				$("#product").empty();
+				if (result.code == "00") {
+					
+					if(result.context.shares){
+						$.each(result.context.shares,function(index,share){
+							var html= $("#productTemplate").html();
+							html=replaceVariable(html, "productCode", share.productCode);
+							html=replaceVariable(html, "productName", share.productName);
+							html=replaceVariable(html, "providerName", share.providerName);
+							html=replaceVariable(html, "sevenDayYields", share.sevenDayYields);
+							html=replaceVariable(html, "millionYields", share.millionYields);
+							var $html=$(html);
+							$("#product").append($html);
+							$html.addClass("animated "+(index%2==0?" fadeInLeft":" fadeInRight"));
+						});
+					}
+					
+					if (result.context.apkURL) {
+						$('#ANDROID_APP').qrcode({
+							text : result.context.apkURL,
+							width : 512,
+							height : 512,
+							correctLevel : QRErrorCorrectLevel.M
+						}).addClass("animated bounceInDown").css({'-webkit-animation-duration':'1.2s','animation-duration':'1.2s'});
+						$('#ANDROID_APP').click(function() {
+							window.location.href = result.context.apkURL;
+						});
+					}
+
+					if (result.context.ipaURL) {
+						$('#IOS_APP').qrcode({
+							text : result.context.ipaURL,
+							width : 512,
+							height : 512,
+							correctLevel : QRErrorCorrectLevel.M
+						}).addClass("animated bounceInDown").css({'-webkit-animation-duration':'1.2s','animation-duration':'1.2s'});
+						$('#IOS_APP').click(function() {
+							window.location.href = result.context.ipaURL;
+						});
+					}
+
+				}
+			},
+			error : function(error) {
+				$("#header").addClass("animated bounceInDown").css("visibility","visible").one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+					$("#appName").addClass("animated flipInX infinite").css({'-webkit-animation-duration':'2s','animation-duration':'2s'});
+				});
+				$("#product").append("<div class='text-center'><span class='text-warning' style='font-size:24px;'>请求数据错误！</span></div>");
+			}
+		});
+	}());
+	
+	function replaceVariable(content,variable,value){
+		
+		var pattern="[{][{] *"+variable+" *[}][}]";
+		var regexp=new RegExp(pattern,"g");
+
+		content=content.replace(regexp,value!=null?value:"");
+		return content;
+	};
+	
+	function viewProduct(productCode){
+		window.location.href="./productItem.html?productCode="+productCode+"&cellPhone="+"";
+	}
+</script>
+</html>

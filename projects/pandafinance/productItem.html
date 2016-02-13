@@ -1,0 +1,193 @@
+
+
+
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>熊猫金融</title>
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="./js/plugs/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="./js/plugs/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+<!-- animate -->
+<link rel="stylesheet" href="./css/animate/3.5.0/animate.min.css">
+<!-- font-awesome -->
+<link rel="stylesheet" href="./css/font-awesome/4.5.0/css/font-awesome.min.css">
+<!-- default style -->
+<link rel="stylesheet" href="./css/style.css">
+
+<!-- jQuery -->
+<script type="text/javascript" src="./js/jquery/2.1.1/jquery-2.1.1.js"></script>
+
+<!-- bootstrap -->
+<script type="text/javascript" src="./js/plugs/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+
+
+<style type="text/css">
+	#ANDROID_APP canvas,#IOS_APP canvas{
+		border:1px dashed #fff;
+		padding:5px;
+		width:100%;
+	}
+</style>
+</head>
+
+
+<script type="text/javascript">
+function is_weixin(){ 
+    var ua = navigator.userAgent.toLowerCase(); 
+    if(ua.match(/MicroMessenger/i)=="micromessenger") { 
+        return true; 
+     } else { 
+        return false; 
+    } 
+}
+</script>
+<body>
+<div class="container-fluid" style="background-color: #0a9dc7;position:relative;">
+
+	<div style="display:none;position: absolute; top: 0; left: 0; width: 100vw; font-size: 5vw; color: white; padding: 15px;padding: 5vw;">
+		<span id="productName" style="display: inline-block; padding: 5px; border: 1px solid white; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px;">
+		</span>
+	</div>
+	<div class="row">
+		<div class="col-xs-12 text-center" style="color:#ef473a;"><span style="font-size:48px;font-size:15vw;" id="sevenDayYields">0.00</span><span style="font-size:36px;font-size:7.5vw;">%</span></div>
+		<div class="col-xs-12 text-center" style="color:#fff;">七日年化收益率</div>
+		<div class="col-xs-12 text-center" style="color:#ef473a;"><span style="font-size:48px;font-size:15vw;" id="millionYields">0.00</span><span style="font-size:36px;font-size:7.5vw;">元</span></div>
+		<div class="col-xs-12 text-center" style="color:#fff;">日万分年化收益</div>
+	</div>
+</div>
+
+
+<div style="position:relative;padding-top:20px;padding-bottom:20px;">	
+
+	<div align="center" style="display:none;position: absolute;width: 100%;top: 0;bottom:0;">
+		<span id="providerName" style="-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);-ms-transform: rotate(45deg);-o-transform: rotate(45deg);transform: rotate(45deg);font-size:48px;display: inline-block; padding: 5px; border: 5px solid rgba(255,0,0,0.1);color: rgba(255,0,0,0.1);-webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px;font-weight: bold;">
+		</span>
+	</div>
+	<div class="container-fluid">
+		<blockquote>
+			<p id="title"></p>
+			<footer id="shareDesc"></footer>
+		</blockquote>
+		
+		<blockquote>
+			<p id="productTitle"></p>
+			<footer id="productDesc"></footer>
+		</blockquote>
+	</div>
+</div>
+
+<div class="container-fluid" style="padding-top:20px;padding-bottom:20px;background-color: #444;">
+	
+	<div class="row" style="height:50vw;color:#fff;">
+		<div class="col-xs-6">
+			<div id="ANDROID_APP" style="width:100%"></div>
+		</div>
+		<div class="col-xs-6">
+			<div id="IOS_APP" style="width:100%"></div>
+		</div>
+		<div class="col-xs-6 text-center" style="font-weight: bold;">
+			Android
+		</div>
+		<div class="col-xs-6 text-center" style="font-weight: bold;">
+			IOS
+		</div>
+		
+		<div class=col-xs-12>
+			<div class="row">
+				<div class="col-xs-3" style="border:1px solid #3c763d;"></div>
+				<div class="col-xs-3" style="border:1px solid #a94442;"></div>
+				<div class="col-xs-3" style="border:1px solid #46b8da;"></div>
+				<div class="col-xs-3" style="border:1px solid #2e6da4;"></div>
+			</div>
+		</div>
+		<div class="col-xs-12 text-center">
+			中天智慧科技有限公司 ZSmarter LTD.&copy;2016.
+		</div>
+	</div>
+
+</div>
+
+</body>
+<script type="text/javascript"
+	src="./js/plugs/jquery-qrcode/1.0.1/qrcode.js"></script>
+<script type="text/javascript"
+	src="./js/plugs/jquery-qrcode/1.0.1/jquery.qrcode.js"></script>
+<script type="text/javascript">
+	$(function() {
+	
+		$.ajax({
+			url : "./json/shareProductItem.json",
+			type : "post",
+			data : {
+				productCode : "ZS0003",
+				cellPhone : ""
+			},
+			dataType : "json",
+			success : function(result) {
+				if (result.code == "00") {
+					if (result.context.share) {
+						$("#productName").html(result.context.share.productName).addClass("animated fadeInLeft").parent().show();
+						
+						$("#sevenDayYields").html(result.context.share.sevenDayYields).parent().addClass("animated bounceIn");
+						$("#millionYields").html(result.context.share.millionYields).parent().addClass("animated bounceIn");
+						
+						$("#title").html(result.context.share.title).addClass("animated bounce");
+						$("#shareDesc").html(result.context.share.shareDesc).addClass("animated bounce");
+						
+						$("#productTitle").html(result.context.share.productName).addClass("animated bounce");
+						$("#productDesc").html(result.context.share.productDesc).addClass("animated bounce");
+						
+						$("#content").html(result.context.share.content).addClass("animated bounceIn");
+						
+						if(result.context.share.providerName){
+							$("#providerName").html(result.context.share.providerName).parent().show().addClass("animated fadeIn");
+						}
+						
+						$.each(result.context.share.imgList||[], function(value) {
+							$("#imgList").append("<img src='"+value+"' style='width:100vw;'>")
+						});
+					}
+
+					if (result.context.apkURL) {
+						$('#ANDROID_APP').qrcode({
+							text : result.context.apkURL,
+							width : 512,
+							height : 512,
+							correctLevel : QRErrorCorrectLevel.M
+						});
+						$('#ANDROID_APP').click(function() {
+							window.location.href = result.context.apkURL;
+						});
+					}
+
+					if (result.context.ipaURL) {
+						$('#IOS_APP').qrcode({
+							text : result.context.ipaURL,
+							correctLevel : QRErrorCorrectLevel.M
+						});
+						$('#IOS_APP').click(function() {
+							window.location.href = result.context.ipaURL;
+						});
+					}
+
+				}
+			},
+			error : function(error) {
+				alert("请求数据错误！");
+			}
+		});
+		
+
+	});
+</script>
+</html>
